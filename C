@@ -1,0 +1,104 @@
+
+#include <stdio.h>
+
+int main() {
+
+    int opcao;
+    float saldo = 1000.00;
+    float valor;
+    float depositos = 0;
+    float saques = 0;
+
+    do {
+
+        printf("\n==============================\n");
+        printf("       CAIXA ELETRONICO\n");
+        printf("==============================\n");
+
+        printf("1 - Consultar saldo\n");
+        printf("2 - Realizar deposito\n");
+        printf("3 - Realizar saque\n");
+        printf("4 - Consultar extrato\n");
+        printf("5 - Sair\n");
+
+        printf("==============================\n");
+        printf("Escolha uma opcao: ");
+
+        if (scanf("%d", &opcao) != 1) {
+            printf("Entrada invalida!\n");
+            return 1;
+        }
+
+        switch (opcao) {
+
+            case 1:
+
+                printf("\nSaldo atual: R$ %.2f\n", saldo);
+                break;
+
+            case 2:
+
+                printf("\nDigite o valor do deposito: ");
+                scanf("%f", &valor);
+
+                if (valor > 0) {
+
+                    saldo += valor;
+                    depositos += valor;
+
+                    printf("\nDeposito realizado!\n");
+                } else {
+
+                    printf("\nValor invalido!\n");
+                }
+
+                break;
+
+            case 3:
+
+                printf("\nDigite o valor do saque: ");
+                scanf("%f", &valor);
+
+                if (valor <= 0) {
+
+                    printf("\nValor invalido!\n");
+
+                } else if (valor > saldo) {
+
+                    printf("\nSaldo insuficiente!\n");
+
+                } else {
+
+                    saldo -= valor;
+                    saques += valor;
+
+                    printf("\nSaque realizado!\n");
+                    printf("Retire seu dinheiro.\n");
+                }
+
+                break;
+
+            case 4:
+
+                printf("\n========= EXTRATO =========\n");
+                printf("Depositos: R$ %.2f\n", depositos);
+                printf("Saques: R$ %.2f\n", saques);
+                printf("Saldo: R$ %.2f\n", saldo);
+                printf("===========================\n");
+
+                break;
+
+            case 5:
+
+                printf("\nObrigado por utilizar nosso sistema!\n");
+                break;
+
+            default:
+
+                printf("\nOpcao invalida!\n");
+        }
+
+    } while (opcao != 5);
+
+    return 0;
+}
